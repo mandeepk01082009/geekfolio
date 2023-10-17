@@ -4,4 +4,6 @@
   <script src="../../admin/assets/js/app.min.js"></script>
   <script src="../../admin/assets/libs/apexcharts/dist/apexcharts.min.js"></script>          
   <script src="../../admin/assets/libs/simplebar/dist/simplebar.js"></script>              
-  <script src="../../admin/assets/js/dashboard.js"></script>                    
+  <script src="../../admin/assets/js/dashboard.js"></script>     
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>               
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

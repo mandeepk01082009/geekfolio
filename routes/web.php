@@ -18,11 +18,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::group(['namespace' => 'category'], function() {
+
+Route::group(['namespace' => 'admin','prefix'=>'gogo-admin', 'middleware' => ['auth', 'verified']], function() {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
     Route::get('category', [App\Http\Controllers\admin\CategoryController::class, 'index'])->name('category');      
     
@@ -30,29 +31,49 @@ Route::group(['namespace' => 'category'], function() {
         
     Route::get('categories', [App\Http\Controllers\admin\CategoryController::class, 'show'])->name('categories');  
     
-    Route::get('/editcategories/{id}', [App\Http\Controllers\admin\CategoryController::class, 'edit'])->name('editcategories');    
+    Route::get('/editcategories/{id}', [App\Http\Controllers\admin\CategoryController::class, 'edit'])->name('editcategory');    
     
-    Route::patch('/updatecategories/{id}',[App\Http\Controllers\admin\CategoryController::class, 'update'])->name('updatecategories'); 
+    Route::patch('/updatecategories/{id}',[App\Http\Controllers\admin\CategoryController::class, 'update'])->name('updatecategory'); 
     
-    Route::get('deletecategories/{id}',[App\Http\Controllers\admin\CategoryController::class, 'destroy']);
+    Route::delete('deletecategories/{id}',[App\Http\Controllers\admin\CategoryController::class, 'destroy'])->name('delete_category');
+
+    Route::get('/s', [App\Http\Controllers\admin\SliderController::class, 'index'])->name('addslider'); 
+
+    Route::post('/slider_t', [App\Http\Controllers\admin\SliderController::class, 'create'])->name('sliderstore');
+
+    Route::get('slider', [App\Http\Controllers\admin\SliderController::class, 'show'])->name('slider'); 
+
+    Route::get('/editslider/{id}', [App\Http\Controllers\admin\SliderController::class, 'edit'])->name('editslider');
+    
+    Route::patch('/updateslider/{id}',[App\Http\Controllers\admin\SliderController::class, 'update'])->name('updateslider'); 
+
+    Route::delete('deleteslider/{id}',[App\Http\Controllers\admin\SliderController::class, 'destroy'])->name('deleteslider');  
+
+    Route::get('event', [App\Http\Controllers\admin\EventController::class, 'index'])->name('event');      
+        
+    Route::post('/create_event', [App\Http\Controllers\admin\EventController::class, 'create'])->name('create_event');
+        
+    Route::get('events', [App\Http\Controllers\admin\EventController::class, 'show'])->name('events');  
+    
+    Route::get('/editevent/{id}', [App\Http\Controllers\admin\EventController::class, 'edit'])->name('editevent');    
+    
+    Route::patch('/update_event/{id}',[App\Http\Controllers\admin\EventController::class, 'update'])->name('update_event'); 
+    
+    Route::delete('delete_event/{id}',[App\Http\Controllers\admin\EventController::class, 'destroy'])->name('delete_event');
+
+    Route::get('/a', [App\Http\Controllers\admin\AboutController::class, 'index'])->name('add-about'); 
+
+    Route::post('/aboutstore', [App\Http\Controllers\admin\AboutController::class, 'create'])->name('aboutstore');
+
+    Route::get('aboutus', [App\Http\Controllers\admin\AboutController::class, 'show'])->name('about'); 
+
+    Route::get('/editabout/{id}', [App\Http\Controllers\admin\AboutController::class, 'edit'])->name('editabout');
+    
+    Route::patch('/updateabout/{id}',[App\Http\Controllers\admin\AboutController::class, 'update'])->name('updateabout'); 
+
+    Route::delete('deleteabout/{id}',[App\Http\Controllers\admin\AboutController::class, 'destroy'])->name('deleteabout');  
     
     });
-
-    Route::group(['namespace' => 'event'], function() {
-
-        Route::get('event', [App\Http\Controllers\admin\EventController::class, 'index'])->name('event');      
-        
-        Route::post('/create_event', [App\Http\Controllers\admin\EventController::class, 'create'])->name('create_event');
-            
-        Route::get('events', [App\Http\Controllers\admin\EventController::class, 'show'])->name('events');  
-        
-        Route::get('/editevent/{id}', [App\Http\Controllers\admin\EventController::class, 'edit'])->name('editevent');    
-        
-        Route::patch('/update_event/{id}',[App\Http\Controllers\admin\EventController::class, 'update'])->name('update_event'); 
-        
-        Route::get('delete_event/{id}',[App\Http\Controllers\admin\EventController::class, 'destroy']);
-        
-        });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -68,4 +89,7 @@ Route::group(['namespace' => 'web'], function() {
 
     Route::get('/', [App\Http\Controllers\dark\HomeController::class, 'index'])->name('home-main'); 
 Route::get('/home-creative', [App\Http\Controllers\dark\HomeController::class, 'creative'])->name('home-creative'); 
+Route::get('contact', [App\Http\Controllers\dark\HomeController::class, 'contact'])->name('contact');
+Route::get('about', [App\Http\Controllers\dark\HomeController::class, 'about'])->name('about'); 
+Route::get('portfolio', [App\Http\Controllers\dark\HomeController::class, 'portfolio'])->name('portfolio'); 
 });

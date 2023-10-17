@@ -11,8 +11,8 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                
-            </div>   
+
+            </div>
             <div class="card-body">
                 {{-- <a href="{{ URL::to('img_type/create') }}"><i class="fa fa-plus-square" style="font-size: 40px;float:right;"></i></a> --}}
                 <a href="{{ route('event') }}"><button class="btn btn-primary" style="float:right;">Add</button></a><br><br>
@@ -36,22 +36,31 @@
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($image as $key => $images)  
+                                @foreach ($image as $key => $images)
                                     <tr>
                                         <td>{{ $images->sort_col }}</td>
                                         <td>{{ $images->category->name ?? '-' }}</td>
-                                        <td>             
-                                                <img src="{{ asset('storage/' . $images->image) }}" class="img-fluid"
+                                        <td>
+                                            <img src="{{ asset('storage/' . $images->image) }}" class="img-fluid"
                                                 style="max-width:70; height:70px;">
                                         </td>
-                                        <td class="text-center">  
-                                            <a href="/editevent/{{ $images->id }}" class="btn btn-info btn-sm waves-effect">
-                                                <i class="material-icons">Edit</i>
+                                        <td class="text-center">
+                                            <a href="{{ route('editevent', $images->id) }}"
+                                                class="btn btn-info btn-sm waves-effect">
+                                                <i class="fa fa-edit" style="font-size:20px">
+                                                </i>
                                             </a>
-                                            <a href="/delete_event/{{ $images->id }}"    
-                                                class="btn btn-danger btn-sm waves-effect">
-                                                <i class="material-icons">Delete</i>
-                                            </a>
+                                            <form method="POST" action="{{ route('delete_event', $images->id) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <button type="submit"
+                                                    class="btn btn-danger btn-sm waves-effect show_confirm"
+                                                    data-toggle="tooltip" title='Delete'> <i class="fa fa-trash"
+                                                        style="font-size:20px">
+                                                    </i></button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -65,4 +74,13 @@
     @endsection
 
     @section('scripts')
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            $('.show_confirm').click(function(e) {
+                if (!confirm('Are you sure you want to delete this?')) {
+                    e.preventDefault();
+                }
+            });
+        </script>
     @endsection

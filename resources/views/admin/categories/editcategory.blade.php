@@ -14,7 +14,7 @@
                     <h2>Add Images in Slider</h2>
                 </div>
                 <div class="body">
-                    <form action="/updatecategories/{{ $category->id }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('updatecategory', $category->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')               
 

@@ -8,13 +8,11 @@
     <meta
         http-equiv="Access-Control-Allow-Origin"
         content="*" />
-    <meta name="description" content="bathsoap,washing soap">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">   
 
-
-    <title>{{ config('app.name', 'Geekfolio') }}</title>
+    <title>GoGoSprockets!</title>
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
     @include('dark.layout.partials.styles')    
 

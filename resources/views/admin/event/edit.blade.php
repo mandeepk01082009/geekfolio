@@ -14,9 +14,9 @@
                     <h2>Edit Event</h2>
                 </div>
                 <div class="body">
-                    <form action="/update_event/{{ $event->id }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('update_event', $event->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PATCH')               
+                        @method('PATCH')                 
 
 
                         <input type="hidden" name="id" id="id" value="{{ $event->id }}"> 

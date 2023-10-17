@@ -87,6 +87,20 @@ main {
   z-index: 5;
 }
 
+.navbar .title {
+  font-family: 'Racing Sans One',cursive;
+  font-size: 25px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+a label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
 .row.sm-marg {
   margin-left: -5px;
   margin-right: -5px;
