@@ -87,6 +87,13 @@ main {
   z-index: 5;
 }
 
+/* #clients-title {
+  color: #fff;
+  font-size: 30px;
+  font-weight: 300;
+  font-family: 'Racing Sans One',cursive;
+} */
+
 .navbar .title {
   font-family: 'Racing Sans One',cursive;
   font-size: 25px;

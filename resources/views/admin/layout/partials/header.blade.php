@@ -41,11 +41,11 @@ data-sidebar-position="fixed" data-header-position="fixed">
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="{{ route('about') }}" aria-expanded="false">
+          <a class="sidebar-link" href="{{ route('aboutus') }}" aria-expanded="false">
             <span>
               <i class="ti ti-alert-circle"></i>
             </span>
-            <span class="hide-menu">Slider</span>
+            <span class="hide-menu">About</span>
           </a>
         </li>
         <li class="sidebar-item">
@@ -62,6 +62,14 @@ data-sidebar-position="fixed" data-header-position="fixed">
               <i class="ti ti-alert-circle"></i>
             </span>
             <span class="hide-menu">Slider</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="{{ route('clients') }}" aria-expanded="false">
+            <span>
+              <i class="ti ti-alert-circle"></i>
+            </span>
+            <span class="hide-menu">Clients</span>
           </a>
         </li>
         

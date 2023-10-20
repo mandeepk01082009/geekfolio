@@ -12,7 +12,7 @@
     <meta name="author" content="">
 
     <!-- Title  -->
-    <title>Geekfolio</title>
+    <title>Gogosprockets!</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('dark/assets/imgs/favicon.ico') }}">
@@ -79,12 +79,15 @@
 
     <!-- ==================== Start Navbar ==================== -->
 
-    <nav class="navbar navbar-expand-lg static main-bg">
+    <nav class="navbar navbar-expand-lg bord main-bg" style="background:#1d1d1d;">
         <div class="container">
 
             <!-- Logo -->
-            <a  href="#">
-                <label class="title" onclick="scroll_to_top()">GoGoSpr<i class="fa fa-cog fa-spin"></i>ckets!</label>
+            <a href="#">
+                <label class="title"
+                    style="font-family: 'Racing Sans One';font-weight:bold; color:#DF0000; font-size: 25px; cursor:            pointer;"
+                    onclick="scroll_to_top()">GoGoSpr<i class="fa fa-cog fa-spin"
+                        style="color:white;"></i>ckets!</label>
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -95,32 +98,29 @@
             <!-- navbar links -->
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home-main') }}"><span class="rolling-text">Home</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}"><span class="rolling-text">ABOUT</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('portfolio') }}"><span class="rolling-text">Gallery</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contact') }}"><span class="rolling-text">Booking and Contact</span></a>
-                            </li>
-                        </ul>
-                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}"><span class="rolling-text">Home</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('port') }}"><span class="rolling-text">Gallery</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contact') }}"><span class="rolling-text">Booking and
+                                Contact</span></a>
+                    </li>
+                </ul>
+            </div>
+
             {{-- <div class="search-form">
-                <div class="form-group">
-                    <input type="text" name="search" placeholder="Search">
-                    <button><span class="pe-7s-search"></span></button>
-                </div>
-                <div class="search-icon">
-                    <span class="pe-7s-search open-search"></span>
-                    <span class="pe-7s-close close-search"></span>
-                </div>
-            </div> --}}
+               <div class="form-group">
+                   <input type="text" name="search" placeholder="Search">
+                   <button><span class="pe-7s-search"></span></button>
+               </div>
+               <div class="search-icon">
+                   <span class="pe-7s-search open-search"></span>
+                   <span class="pe-7s-close close-search"></span>
+               </div>
+           </div> --}}
         </div>
     </nav>
 
@@ -136,13 +136,13 @@
                     <div class="col-lg-7">
                         <div class="caption">
                             <h6 class="sub-title">Contact Us</h6>
-                            <h1 class="fz-55">Let's make <br> your brand brilliant!</h1>
+                            <h1 class="fz-55">Let us make <br> your event brilliant!</h1>
                         </div>
                     </div>
                     <div class="col-lg-5 valign">
                         <div class="text">
-                            <p>We help our clients succeed by creating brand identities, digital experiences, and print
-                                materials that communicate clearly, achieve marketing goals, and look fantastic.</p>
+                            <p>We help our clients create events with the identity they want so people remember the
+                                product, party or ceremony long after the lights go out.</p>
                         </div>
                     </div>
                 </div>
@@ -171,51 +171,61 @@
                                 <li class="mr-30">
                                     <a href="#0">Facebook</a>
                                 </li>
-                                <li class="mr-30">
-                                    <a href="#0">Twitter</a>
-                                </li>
-                                <li class="mr-30">
-                                    <a href="#0">LinkedIn</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Instagram</a>
-                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 offset-lg-1 valign">
                         <div class="full-width">
-                            <form id="contact-form" method="post" action="contact.php">
+                            <div class="errorlist">
+                            <form method="POST" class="form_class" action="{{route('contactus')}}" enctype="multipart/form-data">
+                            @csrf
+                                {{-- <div class="messages"></div> --}}
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                @endif
 
-                                <div class="messages"></div>
+                                <div class="row">
 
-                                <div class="controls row">
-
-                                    <div class="col-lg-6">
+                                    <div
+                                     class="col-lg-6">
                                         <div class="form-group mb-30">
-                                            <input id="form_name" type="text" name="name" placeholder="Name"
-                                                required="required">
+                                            <input type="text" name="name" placeholder="Name"
+                                        >
                                         </div>
+                                        @if ($errors->has('name'))
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group mb-30">
-                                            <input id="form_email" type="email" name="email" placeholder="Email"
-                                                required="required">
+                                            <input  type="email" name="email" placeholder="Email"
+                                        >
                                         </div>
+                                        @if ($errors->has('email'))
+                                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                                        @endif
                                     </div>
-
+ 
                                     <div class="col-12">
                                         <div class="form-group mb-30">
-                                            <input id="form_subject" type="text" name="subject"
+                                            <input  type="text" name="subject"
                                                 placeholder="Subject">
                                         </div>
+                                        @if ($errors->has('subject'))
+                                            <span class="text-danger">{{ $errors->first('subject') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <textarea id="form_message" name="message" placeholder="Message" rows="4" required="required"></textarea>
+                                            <textarea  name="message" placeholder="Message" rows="4"> </textarea>
                                         </div>
+                                        @if ($errors->has('message'))
+                                            <span class="text-danger">{{ $errors->first('message') }}</span>
+                                        @endif
                                         <div class="mt-30">
                                             <button type="submit" class="butn butn-md butn-bord radius-30">
                                                 <span class="text">Let's Talk</span>
@@ -244,16 +254,16 @@
                     <div class="col-lg-4">
                         <div class="logo">
                             <a href="#0">
-                                <img src="{{ asset('dark/assets/imgs/logo-light.png') }}" alt="">
+                                <h4>GoGoSprockets!</h4>
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-8">
                         <div class="copyright d-flex">
                             <div class="ml-auto">
-                                <p class="fz-13">© 2023 Geekfolio is Proudly Powered by <span class="underline"><a
-                                            href="https://themeforest.net/user/ui-themez"
-                                            target="_blank">Ui-ThemeZ</a></span></p>
+                                <p class="fz-13"> © 2023 GoGoSprockets, website by <span class="underline"><a
+                                            href="https://grafxapps.com/" target="_blank">Graf x Apps LLC.</a></span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -264,14 +274,59 @@
 
     <!-- ==================== End Footer ==================== -->
 
+    {{-- <script>
+        $(document).on('submit', '.form_class', function(e) {   
+    
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+    
+            var data = $(this).serializeArray();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+    
+            $.ajax({
+                type: "POST",
+                url: "{{ route('contactus') }}",          
+                data: $.param(data), // serializes the form's elements.
+                //processData:false,
+                dataType: "json",
+                //contentType: false,
+                success: function(response) {
+                    alert("register");
+                    if (response.status == 400) {   
+                        $('.errorlist').html("");
+                        $('.errorlist').addClass('alert alert-danger');
+                       $.each(response.error, function(key, err_values) {      
+                        $(".errorlist").append('<div>'+err_values+'</div>')    
+                        });
+                    } else {
+                         
+                        $('.errorlist').html(""); 
+                        $('.errorlist').removeClass('alert alert-danger');                
+                        Swal.fire({
+                            title: 'Thanks for contacting us',
+                            showClass: {
+                                popup: 'animate__animated animate__fadeInDown'
+                            },
+                            hideClass: {
+                                popup: 'animate__animated animate__fadeOutUp'
+                            }
+                        })
+                    }
+    
+                }
+    
+               
+            });
+            $('.form_class').each(function() { this.reset() });  
+    
+        });
+    </script>
 
-
-
-
-
-
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
     <!-- jQuery -->
     <script src="{{ asset('dark/assets/js/jquery-3.6.0.min.js') }}"></script>

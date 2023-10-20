@@ -50,6 +50,29 @@
 
                         </div>    
 
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label for="name" class="col-md-4 col-form-label">Name</label>
+                                <input type="text" class="form-control" value="{{ $event->name }}"  name="name">
+                            </div>
+
+                            @if ($errors->has('name'))     
+                            <span class="text-danger">{{ $errors->first('name') }}</span>      
+                        @endif 
+
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label for="height" class="col-md-4 col-form-label">Height</label>
+                                <input type="text" value="{{ $event->height }}" class="form-control" name="height">
+                            </div>
+
+                       
+                        @if ($errors->has('height'))     
+                            <span class="text-danger">{{ $errors->first('height') }}</span>      
+                        @endif          
+
+                    </div>    
+
 
                         <div class="form-group form-float">
                             <div class="form-line">

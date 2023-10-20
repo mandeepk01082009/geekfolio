@@ -50,15 +50,6 @@
                         <li>
                             <a href="#0">Facebook</a>
                         </li>
-                        <li>
-                            <a href="#0">Twitter</a>
-                        </li>
-                        <li>
-                            <a href="#0">LinkedIn</a>
-                        </li>
-                        <li>
-                            <a href="#0">Instagram</a>
-                        </li>
                     </ul>
                 </div>
                 <div class="col-lg-3">
@@ -91,11 +82,12 @@
                     <div class="col-lg-8">
                         <div class="copyright d-flex">
                             <div class="ml-auto">
-                                <p class="fz-13">© 2023 Geekfolio is Proudly Powered by <span
-                                        class="underline"><a href="https://themeforest.net/user/ui-themez"
-                                            target="_blank">Ui-ThemeZ</a></span></p>
+                                <p class="fz-13"> © 2023 GoGoSprockets, website by <span class="underline"><a
+                                            href="https://grafxapps.com/"
+                                            target="_blank">Graf x Apps LLC.</a></span></p>
                             </div>
                         </div>
+                       
                     </div>
                 </div>
             </div>

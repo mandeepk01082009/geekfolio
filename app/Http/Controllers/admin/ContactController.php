@@ -1,39 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\dark;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Slider; 
-use App\Models\About; 
-use App\Models\Clients;
-use App\Models\Event;
-use App\Models\Contact;
-use Mail;
+use App\Models\Contact; 
+use Mail; 
 
-class HomeController extends Controller
+class ContactController extends Controller
 {
-    public function index()
-    {
-        $slider = Slider::all();
-        $about = About::all();
-        $clients = Clients::all();
-        $event = Event::all();
-        return view('dark.home-main',compact('slider','about','clients','event'));
-    }
-
-    public function creative()
-    {
-        return view('dark.home-creative');
-    }
-
-    public function contact()
-    {
-        return view('dark.contact');  
-    }
-
-    public function sendEmail(Request $request) 
-    { 
+    public function contactus(Request $request) { 
 
         $this->validate($request, [
             'name' => 'required',
@@ -48,9 +24,9 @@ class HomeController extends Controller
         $contact->email = $request->email;
         $contact->subject = $request->subject;
         $contact->message = $request->message;
+        dd($contact);
 
         $contact->save();
-        //return response()->json(['success'=>'Data uploaded successfully.']); 
 
         \Mail::send('dark.contact_email',
         array(
@@ -61,7 +37,6 @@ class HomeController extends Controller
         ), function($message) use ($request)
           {
              $message->from($request->email);
-             $message->subject('Thanks for contacting Amrit Soap'); 
              $message->to('geminiadvt@gmail.com');  
           });
         
@@ -69,9 +44,19 @@ class HomeController extends Controller
 
     }
 
-
-    public function portfolio()
+    public function view()
     {
-        return view('dark.portfolio');  
+        $contact = Contact::all();
+        return view('admin.contact.index',compact('contact'));
+        
     }
+
+    public function destroy($id)
+    {
+        $contact = Contact::find($id);
+        $contact->delete();
+        return redirect('/contact'); 
+
+    }
+
 }

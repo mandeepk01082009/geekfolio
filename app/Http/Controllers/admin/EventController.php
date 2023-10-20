@@ -20,12 +20,16 @@ class EventController extends Controller
         $data = $request->validate([
             'category_id' => 'required',
             'sort_col' => 'required|integer',
+            'name' => 'required',
+            'height' => 'required',
             'image' => 'required|image',
 ]);
 
 $event = Event::create([
      'category_id' => $request->category_id,
      'sort_col' => $request->input('sort_col'),
+     'name' => $request->input('name'),
+     'height' => $request->input('height'),
      'image' => '', 
 ]);
 
@@ -40,7 +44,7 @@ if($request->has('image')) {
 
     $event->save(); 
 
-return redirect('/events');      
+return redirect('/gogo-admin/events');      
 
 
 //return response()->json(['success'=>'Files uploaded successfully.']);
@@ -73,6 +77,10 @@ return redirect('/events');
         
         $event->sort_col = $request->input('sort_col');
 
+        $event->name = $request->input('name');
+
+        $event->height = $request->input('height');
+
         if($request->has('image')) {
             $file = $request->file('image');
             $extention = $file->getClientOriginalName();     
@@ -83,21 +91,14 @@ return redirect('/events');
     
     $event->update();                 
 
-    return redirect('/events');               
+    return redirect('/gogo-admin/events');               
     }
 
     public function destroy(string $id)               
     {
         $event = Event::find($id);   
         $event->delete();          
-        return redirect('/events');                                                                       
-    }
-
-    public function display($id)    
-    {
-        $pack = OurPacks::where('id', $id)->get();   
-        $packdetail = PackDetail::where('pack_id', $id)->get();   
-        return view('frontend.packdetails',compact('pack','packdetail'));      
+        return redirect('/gogo-admin/events');                                                                       
     }
 
 }

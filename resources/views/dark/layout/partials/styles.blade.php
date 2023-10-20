@@ -1,6 +1,6 @@
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../../dark/assets/imgs/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('dark/assets/imgs/favicon.ico')}}">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
@@ -14,7 +14,7 @@
         rel="stylesheet">
 
     <!-- Plugins -->
-    <link rel="stylesheet" href="../../dark/assets/css/plugins.css">
+    <link rel="stylesheet" href="{{ asset('dark/assets/css/plugins.css')}}">
 
     <!-- Core Style Css -->
-    <link rel="stylesheet" href="../../dark/assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('dark/assets/css/style.css')}}">

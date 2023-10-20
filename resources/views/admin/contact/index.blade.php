@@ -15,55 +15,50 @@
             </div>
             <div class="card-body">
                 {{-- <a href="{{ URL::to('img_type/create') }}"><i class="fa fa-plus-square" style="font-size: 40px;float:right;"></i></a> --}}
-                <a href="{{ route('event') }}"><button class="btn btn-primary" style="float:right;">Add</button></a><br><br>
+                {{-- <a href="{{ route('addclients') }}"><button class="btn btn-primary" style="float:right;">Add</button></a><br><br> --}}
                 <div class="table-responsive">
                     <div class="table-responsive">
                         <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>SL.</th>
-                                    <th>Event</th>
                                     <th>Name</th>
-                                    <th>Height</th>
-                                    <th>Image</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>SL.</th>
-                                    <th>Event</th>
                                     <th>Name</th>
-                                    <th>Height</th>
-                                    <th>Image</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 @foreach ($image as $key => $images)
                                     <tr>
-                                        <td>{{ $images->sort_col }}</td>
-                                        <td>{{ $images->category->name ?? '-' }}</td>
-                                        <td>{{ $images->name }}</td>
-                                        <td>{{ $images->height }}</td>
+                                        <td>{{ $key + 1 }}</td>
                                         <td>
                                             <img src="{{ asset('storage/' . $images->image) }}" class="img-fluid"
                                                 style="max-width:70; height:70px;">
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('editevent', $images->id) }}"
+                                            {{-- <a href="{{ route('editclients', $images->id) }}"
                                                 class="btn btn-info btn-sm waves-effect">
                                                 <i class="fa fa-edit" style="font-size:20px">
                                                 </i>
-                                            </a>
-                                            <form method="POST" action="{{ route('delete_event', $images->id) }}">
-                                                @csrf
+                                            </a> --}}
+                                            <form method="POST" action="{{ route('deleteclients', $images->id) }}">
+                                                @csrf 
                                                 @method('delete')
                                                 <input name="_method" type="hidden" value="DELETE">
-                                                <button type="submit"
-                                                    class="btn btn-danger btn-sm waves-effect show_confirm"
-                                                    data-toggle="tooltip" title='Delete'> <i class="fa fa-trash"
-                                                        style="font-size:20px">
+                                                <button type="submit" class="btn btn-danger btn-sm waves-effect show_confirm"
+                                                    data-toggle="tooltip" title='Delete'> <i class="fa fa-trash" style="font-size:20px">
                                                     </i></button>
                                             </form>
                                         </td>

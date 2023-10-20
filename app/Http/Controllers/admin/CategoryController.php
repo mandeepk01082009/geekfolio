@@ -39,7 +39,7 @@ class CategoryController extends Controller
  
   //return response()->json(['success'=>'Data uploaded successfully.']); 
   
-  return redirect('/categories');         
+  return redirect('/gogo-admin/categories');         
  
  }
 
@@ -77,14 +77,14 @@ class CategoryController extends Controller
     
     $category->update();                 
 
-    return redirect('/categories');               
+    return redirect('/gogo-admin/categories');         
     }
 
     public function destroy(string $id)               
     {
         $category = Category::find($id);   
         $category->delete();          
-        return redirect('/categories');                                                                       
+    return redirect('/gogo-admin/categories');                                                                 
     }
 
 

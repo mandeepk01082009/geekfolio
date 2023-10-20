@@ -61,17 +61,29 @@ Route::group(['namespace' => 'admin','prefix'=>'gogo-admin', 'middleware' => ['a
     
     Route::delete('delete_event/{id}',[App\Http\Controllers\admin\EventController::class, 'destroy'])->name('delete_event');
 
-    Route::get('/a', [App\Http\Controllers\admin\AboutController::class, 'index'])->name('add-about'); 
+    Route::get('/a', [App\Http\Controllers\admin\AboutController::class, 'index'])->name('addabout'); 
 
     Route::post('/aboutstore', [App\Http\Controllers\admin\AboutController::class, 'create'])->name('aboutstore');
 
-    Route::get('aboutus', [App\Http\Controllers\admin\AboutController::class, 'show'])->name('about'); 
+    Route::get('aboutus', [App\Http\Controllers\admin\AboutController::class, 'show'])->name('aboutus'); 
 
     Route::get('/editabout/{id}', [App\Http\Controllers\admin\AboutController::class, 'edit'])->name('editabout');
     
     Route::patch('/updateabout/{id}',[App\Http\Controllers\admin\AboutController::class, 'update'])->name('updateabout'); 
 
     Route::delete('deleteabout/{id}',[App\Http\Controllers\admin\AboutController::class, 'destroy'])->name('deleteabout');  
+
+    Route::get('/c', [App\Http\Controllers\admin\ClientsController::class, 'index'])->name('addclients'); 
+
+    Route::post('/clients-store', [App\Http\Controllers\admin\ClientsController::class, 'create'])->name('clients-store');
+
+    Route::get('clients', [App\Http\Controllers\admin\ClientsController::class, 'show'])->name('clients'); 
+
+    Route::get('/editclients/{id}', [App\Http\Controllers\admin\ClientsController::class, 'edit'])->name('editclients');
+    
+    Route::patch('/updateclients/{id}',[App\Http\Controllers\admin\ClientsController::class, 'update'])->name('updateclients'); 
+
+    Route::delete('deleteclients/{id}',[App\Http\Controllers\admin\ClientsController::class, 'destroy'])->name('deleteclients');  
     
     });
 
@@ -87,9 +99,14 @@ require __DIR__.'/auth.php';
 
 Route::group(['namespace' => 'web'], function() {
 
-    Route::get('/', [App\Http\Controllers\dark\HomeController::class, 'index'])->name('home-main'); 
+Route::get('/', [App\Http\Controllers\dark\HomeController::class, 'index'])->name('home'); 
 Route::get('/home-creative', [App\Http\Controllers\dark\HomeController::class, 'creative'])->name('home-creative'); 
 Route::get('contact', [App\Http\Controllers\dark\HomeController::class, 'contact'])->name('contact');
-Route::get('about', [App\Http\Controllers\dark\HomeController::class, 'about'])->name('about'); 
-Route::get('portfolio', [App\Http\Controllers\dark\HomeController::class, 'portfolio'])->name('portfolio'); 
+//Route::post('/send-email', [HomeController::class, 'sendEmail'])->name('sendContactEmail'); 
+//Route::get('about', [App\Http\Controllers\dark\HomeController::class, 'about'])->name('about');   
+Route::get('portfolio', [App\Http\Controllers\dark\HomeController::class, 'portfolio'])->name('port'); 
 });
+
+//Route::get('/contactus', [App\Http\Controllers\dark\HomeController::class, 'sendEmail'])->name('contactus');
+//Route::post('/contactus', 'HomeController@sendEmail')->name('contactus');
+Route::post('/contactus', [App\Http\Controllers\dark\HomeController::class, 'sendEmail'])->name('contactus');

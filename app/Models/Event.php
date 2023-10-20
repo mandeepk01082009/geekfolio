@@ -11,7 +11,9 @@ class Event extends Model
     protected $table = 'events';             
     protected $fillable = [    
         'category_id',   
-        'sort_col',    
+        'sort_col',  
+        'name',
+        'height',  
         'image',    
     ]; 
 

@@ -40,9 +40,29 @@
                             <input type="text" class="form-control" name="sort_col">
                         </div>
 
-                       
                         @if ($errors->has('sort_col'))     
-                            <span class="text-danger">{{ $errors->first('sort_col') }}</span>      
+                        <span class="text-danger">{{ $errors->first('sort_col') }}</span>      
+                    @endif 
+
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label for="name" class="col-md-4 col-form-label">Name</label>
+                                <input type="text" class="form-control" name="name">
+                            </div>
+
+                            @if ($errors->has('name'))     
+                            <span class="text-danger">{{ $errors->first('name') }}</span>      
+                        @endif 
+
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label for="height" class="col-md-4 col-form-label">Height</label>
+                                <input type="text" class="form-control" name="height">
+                            </div>
+
+                       
+                        @if ($errors->has('height'))     
+                            <span class="text-danger">{{ $errors->first('height') }}</span>      
                         @endif          
 
                     </div>    
